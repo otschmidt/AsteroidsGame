@@ -1,5 +1,7 @@
 //your variable declarations here
 Spaceship bob = new Spaceship();
+int qSize = 1;
+
 public void setup() 
 {
   size(500,500);
@@ -12,17 +14,30 @@ public void draw()
   background(150);
   bob.show();
   bob.move();
-  //redraw();
 }
 
 public void keyPressed(){
   //Arrow keys used to move
   if(keyCode== 38) 
-    bob.accelerate(0.25);
+    bob.accelerate(0.1);
+  if(keyCode==40)
+      bob.accelerate(-0.1);
   if(keyCode==37) 
-    bob.rotate(-10);
+    bob.rotate(-15);
   if(keyCode==39) 
-    bob.rotate(10);
+    bob.rotate(15);
+  //HyperSpace q for Quantum leap
+  if(keyCode==81)
+  {
+    qSize = qSize + 2;
+    if(qSize > 20){qSize = 0;}
+    bob.setDirectionX(0);
+    bob.setDirectionY(0);
+    bob.setX((int)(Math.random()*500));
+    bob.setY((int)(Math.random()*500));
+    ellipse(getX,getY,qSize, qSize);
+  }
+
     
 
 }
@@ -30,15 +45,29 @@ class Spaceship extends Floater
 {   
 
   public Spaceship(){
-    corners = 3;
+    corners = 10;
     xCorners = new int[corners];
     yCorners = new int[corners];
-    xCorners[0] = -8;
-    yCorners[0] = -8;
-    xCorners[1] = 16;
-    yCorners[1] = 0;
-    xCorners[2] = -8;
-    yCorners[2] = 8;
+    xCorners[0] = 16;
+    yCorners[0] = 0;
+    xCorners[1] = 0;
+    yCorners[1] = 10;
+    xCorners[2] = -15;
+    yCorners[2] = 10;
+    xCorners[3] = -10;
+    yCorners[3] = 5;
+    xCorners[4] = -5;
+    yCorners[4] = 5;
+    xCorners[5] = -2;
+    yCorners[5] = 0;
+    xCorners[6] = -5;
+    yCorners[6] = -5;
+    xCorners[7] = -10;
+    yCorners[7] = -5;
+    xCorners[8] = -15;
+    yCorners[8] = -10;
+    xCorners[9] = 0;
+    yCorners[9] = -10;
 
   }
   public void setX(int x) { myCenterX = x;}  

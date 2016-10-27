@@ -1,6 +1,11 @@
 //your variable declarations here
 Spaceship bob = new Spaceship();
-int qSize = 1;
+boolean qIsPressed = false;
+boolean rIsPressed = false;
+boolean qFix = false;
+boolean rFix = false;
+int rSize = 0;
+int qSize = 50;
 
 public void setup() 
 {
@@ -14,6 +19,35 @@ public void draw()
   background(150);
   bob.show();
   bob.move();
+  if(qIsPressed == true){ 
+    if(qSize > 0 && qFix == true)
+    { 
+      fill(0,255,0);
+      ellipse(bob.getX(),bob.getY(),qSize,qSize);
+      qSize = qSize - 1;
+      rIsPressed = false;
+    }
+    if(qSize == 0){
+      qSize = 50;
+      qFix = false;      }
+   
+  }
+  //NEED TO RECHARGE
+  if(rIsPressed == true){
+    fill(255,0,0);
+    ellipse(bob.getX(),bob.getY(),rSize,rSize);
+    if( rSize < 50 && rFix == true)
+    {
+      rSize = rSize + 1;
+      qIsPressed = false;
+    }
+    if(rSize == 50){
+      rSize = 0; 
+      rFix = false;
+     }
+
+  }
+
 }
 
 public void keyPressed(){
@@ -27,20 +61,28 @@ public void keyPressed(){
   if(keyCode==39) 
     bob.rotate(15);
   //HyperSpace q for Quantum leap
-  if(keyCode==81)
+  if(keyCode==81 && qIsPressed == false)
   {
-    qSize = qSize + 2;
-    if(qSize > 20){qSize = 0;}
+    qIsPressed = true;
     bob.setDirectionX(0);
     bob.setDirectionY(0);
     bob.setX((int)(Math.random()*500));
     bob.setY((int)(Math.random()*500));
-    ellipse(getX,getY,qSize, qSize);
   }
-
-    
-
+  if(keyCode==82)
+  {
+    rIsPressed = true;
+  }
+ 
 }
+ /*void keyReleased()
+  {
+  if(key=='q')
+  {
+    qIsPressed = false;
+  }
+  }
+  */
 class Spaceship extends Floater  
 {   
 

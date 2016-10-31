@@ -2,10 +2,12 @@
 Spaceship bob = new Spaceship();
 boolean qIsPressed = false;
 boolean rIsPressed = false;
-boolean qFix = false;
-boolean rFix = false;
+//boolean qFix = false;
+//boolean rFix = false;
 int rSize = 0;
 int qSize = 50;
+int a = 1;
+int b = 1;
 
 public void setup() 
 {
@@ -20,30 +22,32 @@ public void draw()
   bob.show();
   bob.move();
   if(qIsPressed == true){ 
-    if(qSize > 0 && qFix == true)
+    if(qSize > 0)//qFix == true
     { 
       fill(0,255,0);
       ellipse(bob.getX(),bob.getY(),qSize,qSize);
-      qSize = qSize - 1;
-      rIsPressed = false;
+      qSize = qSize - a;
     }
-    if(qSize == 0){
-      qSize = 50;
-      qFix = false;      }
+    else{
+      
+      a = 0;
+    }
    
   }
-  //NEED TO RECHARGE
+  //Resests hyperspace
   if(rIsPressed == true){
     fill(255,0,0);
     ellipse(bob.getX(),bob.getY(),rSize,rSize);
-    if( rSize < 50 && rFix == true)
+    if( rSize < 50 )//&& rFix == true
     {
-      rSize = rSize + 1;
+      rSize = rSize + b;
       qIsPressed = false;
     }
-    if(rSize == 50){
-      rSize = 0; 
-      rFix = false;
+    else{
+      rSize = 0;
+      b = 0;
+      
+
      }
 
   }
@@ -55,7 +59,7 @@ public void keyPressed(){
   if(keyCode== 38) 
     bob.accelerate(0.1);
   if(keyCode==40)
-      bob.accelerate(-0.1);
+    bob.accelerate(-0.1);
   if(keyCode==37) 
     bob.rotate(-15);
   if(keyCode==39) 
@@ -69,20 +73,15 @@ public void keyPressed(){
     bob.setX((int)(Math.random()*500));
     bob.setY((int)(Math.random()*500));
   }
+  //Recharge Hyperspace?
   if(keyCode==82)
   {
     rIsPressed = true;
   }
  
 }
- /*void keyReleased()
-  {
-  if(key=='q')
-  {
-    qIsPressed = false;
-  }
-  }
-  */
+
+  
 class Spaceship extends Floater  
 {   
 

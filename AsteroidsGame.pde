@@ -1,5 +1,7 @@
 //your variable declarations here
 Spaceship bob = new Spaceship();
+Star[] jerry = new Star[200];
+boolean sFlame = false;
 boolean qIsPressed = false;
 boolean rIsPressed = false;
 //boolean qFix = false;
@@ -12,6 +14,10 @@ int b = 1;
 public void setup() 
 {
   size(500,500);
+  for ( int i = 0; i<jerry.length; i++)
+  {
+    jerry[i] = new Star();
+  }
   bob.setX(250);
   bob.setY(250);
 }
@@ -19,6 +25,10 @@ public void draw()
 {
   //your code here
   background(150);
+  for(int i = 0; i<jerry.length;i++)
+  {
+    jerry[i].show();
+  }
   bob.show();
   bob.move();
   if(qIsPressed == true){ 
@@ -51,15 +61,22 @@ public void draw()
      }
 
   }
+  if(sFlame == true)
+  {
+    fill(255,0,0);
+    rect(bob.getX(),bob.getY(), 5, 20, 10);
+  }
 
 }
 
 public void keyPressed(){
   //Arrow keys used to move
-  if(keyCode== 38) 
+  if(keyCode== 38)
     bob.accelerate(0.1);
+    sFlame = true;
   if(keyCode==40)
     bob.accelerate(-0.1);
+    sFlame = false;
   if(keyCode==37) 
     bob.rotate(-15);
   if(keyCode==39) 
@@ -80,7 +97,20 @@ public void keyPressed(){
   }
  
 }
-
+class Star
+{
+  private int myX, myY;
+  public Star()
+  {
+    myX = (int)(Math.random()*500);
+    myY = (int)(Math.random()*500);
+  }
+  public void show()
+  {
+    fill(255);
+    ellipse(myX, myY,2,2);
+  }
+}
   
 class Spaceship extends Floater  
 {   

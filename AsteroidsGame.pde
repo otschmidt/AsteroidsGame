@@ -1,7 +1,6 @@
 //your variable declarations here
 Spaceship bob = new Spaceship();
 Star[] jerry = new Star[200];
-boolean sFlame = false;
 boolean qIsPressed = false;
 boolean rIsPressed = false;
 //boolean qFix = false;
@@ -32,6 +31,7 @@ public void draw()
   bob.show();
   bob.move();
   if(qIsPressed == true){ 
+    a =1;
     if(qSize > 0)//qFix == true
     { 
       fill(0,255,0);
@@ -39,33 +39,31 @@ public void draw()
       qSize = qSize - a;
     }
     else{
-      
       a = 0;
     }
    
   }
   //Resests hyperspace
   if(rIsPressed == true){
-    fill(255,0,0);
-    ellipse(bob.getX(),bob.getY(),rSize,rSize);
+    b = 1;
     if( rSize < 50 )//&& rFix == true
     {
+      fill(255,0,0);
+      ellipse(bob.getX(),bob.getY(),rSize,rSize);
       rSize = rSize + b;
-      qIsPressed = false;
     }
     else{
       rSize = 0;
       b = 0;
-      
-
      }
 
   }
-  if(sFlame == true)
+  /*if(sFlame == true)
   {
     fill(255,0,0);
     rect(bob.getX(),bob.getY(), 5, 20, 10);
   }
+  */
 
 }
 
@@ -73,28 +71,30 @@ public void keyPressed(){
   //Arrow keys used to move
   if(keyCode== 38)
     bob.accelerate(0.1);
-    sFlame = true;
+    //sFlame = true;
   if(keyCode==40)
     bob.accelerate(-0.1);
-    sFlame = false;
+    //sFlame = false;
   if(keyCode==37) 
     bob.rotate(-15);
   if(keyCode==39) 
     bob.rotate(15);
   //HyperSpace q for Quantum leap
-  if(keyCode==81 && qIsPressed == false)
+  if(keyCode==81)
   {
     qIsPressed = true;
     bob.setDirectionX(0);
     bob.setDirectionY(0);
     bob.setX((int)(Math.random()*500));
     bob.setY((int)(Math.random()*500));
+    bob.setPointDirection((int)(Math.random()*360));
   }
   //Recharge Hyperspace?
   if(keyCode==82)
   {
     rIsPressed = true;
   }
+
  
 }
 class Star

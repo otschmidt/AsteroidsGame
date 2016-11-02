@@ -30,12 +30,12 @@ public void draw()
   }
   bob.show();
   bob.move();
-  /*f(qIsPressed == true){ 
+  if(qIsPressed == true){ 
     a =1;
     if(qSize > 0)//qFix == true
     { 
       fill(0,255,0);
-      ellipse(bob.getX(),bob.getY(),qSize,qSize);
+      //ellipse(bob.getX(),bob.getY(),qSize,qSize);
       qSize = qSize - a;
     }
     else{
@@ -49,7 +49,7 @@ public void draw()
     if( rSize < 50 )//&& rFix == true
     {
       fill(255,0,0);
-      ellipse(bob.getX(),bob.getY(),rSize,rSize);
+      //ellipse(bob.getX(),bob.getY(),rSize,rSize);
       rSize = rSize + b;
     }
     else{
@@ -64,7 +64,7 @@ public void draw()
     fill(255,0,0);
     rect(bob.getX(),bob.getY(), 5, 20, 10);
   }
-  */
+  
 
 }
 

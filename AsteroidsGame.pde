@@ -56,7 +56,7 @@ public void draw()
       rSize = 0;
       b = 0;
      }
-     */
+     
 
   }
   /*if(sFlame == true)
@@ -64,7 +64,7 @@ public void draw()
     fill(255,0,0);
     rect(bob.getX(),bob.getY(), 5, 20, 10);
   }
-  
+  */
 
 }
 

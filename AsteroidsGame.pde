@@ -30,7 +30,7 @@ public void draw()
   }
   bob.show();
   bob.move();
-  if(qIsPressed == true){ 
+  /*f(qIsPressed == true){ 
     a =1;
     if(qSize > 0)//qFix == true
     { 
@@ -56,6 +56,7 @@ public void draw()
       rSize = 0;
       b = 0;
      }
+     */
 
   }
   /*if(sFlame == true)

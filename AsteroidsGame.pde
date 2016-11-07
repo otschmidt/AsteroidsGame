@@ -9,6 +9,7 @@ int rSize = 0;
 int qSize = 50;
 int a = 1;
 int b = 1;
+boolean sFlame = false;
 
 public void setup() 
 {
@@ -31,51 +32,56 @@ public void draw()
   bob.show();
   bob.move();
   if(qIsPressed == true){ 
-    a =1;
+      qSize = 50;
     if(qSize > 0)//qFix == true
     { 
       fill(0,255,0);
-      //ellipse(bob.getX(),bob.getY(),qSize,qSize);
+      ellipse(bob.getX(),bob.getY(),qSize,qSize);
       qSize = qSize - a;
     }
     else{
-      a = 0;
+      qSize = 0;
     }
    
   }
   //Resests hyperspace
   if(rIsPressed == true){
-    b = 1;
+    rSize = 0;
     if( rSize < 50 )//&& rFix == true
     {
       fill(255,0,0);
-      //ellipse(bob.getX(),bob.getY(),rSize,rSize);
+      
+      ellipse(bob.getX(),bob.getY(),rSize,rSize);
       rSize = rSize + b;
     }
     else{
-      rSize = 0;
       b = 0;
      }
      
 
   }
-  /*if(sFlame == true)
+  if(sFlame == true)
   {
+    rotate((float)bob.getPointDirection());
     fill(255,0,0);
-    rect(bob.getX(),bob.getY(), 5, 20, 10);
+    ellipse(bob.getX()-15,bob.getY(),20,5);
   }
-  */
+  
 
 }
 
 public void keyPressed(){
   //Arrow keys used to move
   if(keyCode== 38)
+  {
+    sFlame = true;
     bob.accelerate(0.1);
-    //sFlame = true;
+  }
   if(keyCode==40)
+  {
+    sFlame = false;
     bob.accelerate(-0.1);
-    //sFlame = false;
+  }
   if(keyCode==37) 
     bob.rotate(-15);
   if(keyCode==39) 
@@ -94,9 +100,18 @@ public void keyPressed(){
   if(keyCode==82)
   {
     rIsPressed = true;
+  } 
+}
+public void keyReleased()
+{
+  if(key==81)
+  {
+    qIsPressed = false;
   }
-
- 
+  else if (key == 82)
+  {
+    rIsPressed = false;
+  }
 }
 class Star
 {
@@ -109,7 +124,8 @@ class Star
   public void show()
   {
     fill(255);
-    ellipse(myX, myY,2,2);
+    rect(myX, myY,2,2);
+
   }
 }
   
@@ -140,8 +156,9 @@ class Spaceship extends Floater
     yCorners[8] = -10;
     xCorners[9] = 0;
     yCorners[9] = -10;
-
+  
   }
+
   public void setX(int x) { myCenterX = x;}  
   public int getX(){return (int)myCenterX;}   
   public void setY(int y) { myCenterY = y; }   

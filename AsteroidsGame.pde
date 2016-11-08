@@ -1,5 +1,6 @@
 //your variable declarations here
 Spaceship bob = new Spaceship();
+Flame supa = new Flame();
 Star[] jerry = new Star[200];
 boolean qIsPressed = false;
 boolean rIsPressed = false;
@@ -20,6 +21,8 @@ public void setup()
   }
   bob.setX(250);
   bob.setY(250);
+  supa.setX(230);
+  supa.setY(250);
 }
 public void draw() 
 {
@@ -31,6 +34,8 @@ public void draw()
   }
   bob.show();
   bob.move();
+  supa.show();
+  supa.move();
   if(qIsPressed == true){ 
       qSize = 50;
     if(qSize > 0)//qFix == true
@@ -62,9 +67,11 @@ public void draw()
   }
   if(sFlame == true)
   {
-    rotate((float)bob.getPointDirection());
+    //rotate((float)bob.getPointDirection());
     fill(255,0,0);
-    ellipse(bob.getX()-15,bob.getY(),20,5);
+    supa.show();
+    //ellipse(bob.getX()-15,bob.getY(),20,5);
+
   }
   
 
@@ -76,16 +83,25 @@ public void keyPressed(){
   {
     sFlame = true;
     bob.accelerate(0.1);
+    supa.accelerate(0.1);
   }
   if(keyCode==40)
   {
     sFlame = false;
     bob.accelerate(-0.1);
+    supa.acceleterate(-0.1);
   }
   if(keyCode==37) 
+  {
     bob.rotate(-15);
+    supa.roate(-15);
+  }
+
   if(keyCode==39) 
+  {
     bob.rotate(15);
+    supa.rotate(15);
+  }
   //HyperSpace q for Quantum leap
   if(keyCode==81)
   {
@@ -95,6 +111,11 @@ public void keyPressed(){
     bob.setX((int)(Math.random()*500));
     bob.setY((int)(Math.random()*500));
     bob.setPointDirection((int)(Math.random()*360));
+    supa.setDirectionX(0);
+    supa.setDirectionY(0);
+    supa.setX((int)(Math.random()*500));
+    supa.setY((int)(Math.random()*500));
+    supa.setPointDirection((int)(Math.random()*360));
   }
   //Recharge Hyperspace?
   if(keyCode==82)
@@ -124,11 +145,34 @@ class Star
   public void show()
   {
     fill(255);
-    rect(myX, myY,2,2);
+    rect(myX, myY,3,3);
 
   }
 }
-  
+class Flame extends Floater
+{
+  public Flame(){
+    corners = 3;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners[0] = 0;
+    yCorners[0] = -4;
+    xCorners[1] = 0;
+    yCorners[1] = 4;
+    xCorners[2] = -4;
+    yCorners[2] = 0;
+  }
+  public void setX(int x) { myCenterX = x;}  
+  public int getX(){return (int)myCenterX;}   
+  public void setY(int y) { myCenterY = y; }   
+  public int getY() { return (int)myCenterY;}   
+  public void setDirectionX(double x) {myDirectionX = x;}   
+  public double getDirectionX() { return myDirectionX;}   
+  public void setDirectionY(double y){myDirectionY = y; }   
+  public double getDirectionY() {return myDirectionY;}   
+  public void setPointDirection(int degrees){myPointDirection = degrees;}   
+  public double getPointDirection() { return myPointDirection;}
+}
 class Spaceship extends Floater  
 {   
 

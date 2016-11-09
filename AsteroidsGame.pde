@@ -21,8 +21,9 @@ public void setup()
   }
   bob.setX(250);
   bob.setY(250);
-  supa.setX(230);
+  supa.setX(250);
   supa.setY(250);
+  //supa.setmyColor(255);
 }
 public void draw() 
 {
@@ -34,7 +35,10 @@ public void draw()
   }
   bob.show();
   bob.move();
-  supa.show();
+  supa.setDirectionX(bob.getDirectionX());
+  supa.setDirectionY(bob.getDirectionY());
+  supa.setPointDirection((int)bob.getPointDirection());
+
   supa.move();
   if(qIsPressed == true){ 
       qSize = 50;
@@ -83,24 +87,20 @@ public void keyPressed(){
   {
     sFlame = true;
     bob.accelerate(0.1);
-    supa.accelerate(0.1);
   }
   if(keyCode==40)
   {
     sFlame = false;
     bob.accelerate(-0.1);
-    supa.acceleterate(-0.1);
   }
   if(keyCode==37) 
   {
     bob.rotate(-15);
-    supa.roate(-15);
   }
 
   if(keyCode==39) 
   {
     bob.rotate(15);
-    supa.rotate(15);
   }
   //HyperSpace q for Quantum leap
   if(keyCode==81)
@@ -111,11 +111,7 @@ public void keyPressed(){
     bob.setX((int)(Math.random()*500));
     bob.setY((int)(Math.random()*500));
     bob.setPointDirection((int)(Math.random()*360));
-    supa.setDirectionX(0);
-    supa.setDirectionY(0);
-    supa.setX((int)(Math.random()*500));
-    supa.setY((int)(Math.random()*500));
-    supa.setPointDirection((int)(Math.random()*360));
+    
   }
   //Recharge Hyperspace?
   if(keyCode==82)
@@ -125,11 +121,14 @@ public void keyPressed(){
 }
 public void keyReleased()
 {
+  if(key==38){
+    sFlame = false;
+  }
   if(key==81)
   {
     qIsPressed = false;
   }
-  else if (key == 82)
+  if (key == 82)
   {
     rIsPressed = false;
   }
@@ -149,18 +148,14 @@ class Star
 
   }
 }
-class Flame extends Floater
+/*
+class Asteroid extends Floater
 {
-  public Flame(){
-    corners = 3;
+  public Asteroid(){
+    corners = 6;
     xCorners = new int[corners];
     yCorners = new int[corners];
-    xCorners[0] = 0;
-    yCorners[0] = -4;
-    xCorners[1] = 0;
-    yCorners[1] = 4;
-    xCorners[2] = -4;
-    yCorners[2] = 0;
+  
   }
   public void setX(int x) { myCenterX = x;}  
   public int getX(){return (int)myCenterX;}   
@@ -172,6 +167,55 @@ class Flame extends Floater
   public double getDirectionY() {return myDirectionY;}   
   public void setPointDirection(int degrees){myPointDirection = degrees;}   
   public double getPointDirection() { return myPointDirection;}
+  public void setmyColor(int c){myColor = c;}
+  public int getmyColor(){return(int)myColor;}
+}
+*/
+class Flame extends Floater
+{
+  public Flame(){
+    corners = 12;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners[0] = -6;
+    yCorners[0] = -0;
+    xCorners[1] = -10;
+    yCorners[1] = 4;
+    xCorners[2] = -13;
+    yCorners[2] = 5;
+    xCorners[3] = -15;
+    yCorners[3] = 3;
+    xCorners[4] = -18;
+    yCorners[4] = 2;
+    xCorners[5] = -15;
+    yCorners[5] = 1;
+    xCorners[6] = -18;
+    yCorners[6] = 0;
+    xCorners[7] = -15;
+    yCorners[7] = -1;
+    xCorners[8] = -18;
+    yCorners[8] = -2;
+    xCorners[9] = -15;
+    yCorners[9] = -3;
+    xCorners[10] = -13;
+    yCorners[10] = -5;
+    xCorners[11] = -10;
+    yCorners[11] = -4;
+    myColor = color(255,255, 0);
+
+  }
+  public void setX(int x) { myCenterX = x;}  
+  public int getX(){return (int)myCenterX;}   
+  public void setY(int y) { myCenterY = y; }   
+  public int getY() { return (int)myCenterY;}   
+  public void setDirectionX(double x) {myDirectionX = x;}   
+  public double getDirectionX() { return myDirectionX;}   
+  public void setDirectionY(double y){myDirectionY = y; }   
+  public double getDirectionY() {return myDirectionY;}   
+  public void setPointDirection(int degrees){myPointDirection = degrees;}   
+  public double getPointDirection() { return myPointDirection;}
+  public void setmyColor(int c){myColor = c;}
+  public int getmyColor(){return(int)myColor;}
 }
 class Spaceship extends Floater  
 {   

@@ -2,6 +2,7 @@
 Spaceship bob = new Spaceship();
 Flame supa = new Flame();
 Star[] jerry = new Star[200];
+Asteroid[] joe = new Asteroid[20];
 boolean qIsPressed = false;
 boolean rIsPressed = false;
 //boolean qFix = false;
@@ -32,6 +33,10 @@ public void draw()
   for(int i = 0; i<jerry.length;i++)
   {
     jerry[i].show();
+  }
+  for(int i = 0; i<joe.length; i++)
+  {
+    joe.show();
   }
   bob.show();
   bob.move();
@@ -148,13 +153,24 @@ class Star
 
   }
 }
-/*
+
 class Asteroid extends Floater
 {
   public Asteroid(){
-    corners = 6;
+    corners = 5;
     xCorners = new int[corners];
     yCorners = new int[corners];
+    xCorners[0] = 4;
+    yCorners[0] = 4;
+    xCorners[1] = 4;
+    yCorners[1] = -4;
+    xCorners[2] = -4;
+    yCorners[2] = -4;
+    xCorners[3] = -4;
+    yCorners[3] = 4;
+    xCorners[4] = 1;
+    yCorners[4] = 3;
+
   
   }
   public void setX(int x) { myCenterX = x;}  
@@ -170,7 +186,7 @@ class Asteroid extends Floater
   public void setmyColor(int c){myColor = c;}
   public int getmyColor(){return(int)myColor;}
 }
-*/
+
 class Flame extends Floater
 {
   public Flame(){

@@ -20,6 +20,10 @@ public void setup()
   {
     jerry[i] = new Star();
   }
+   for(int j = 0; j<joe.length; j++)
+  {
+    joe[j] = new Asteroid();
+  }
   bob.setX(250);
   bob.setY(250);
   supa.setX(250);
@@ -34,9 +38,10 @@ public void draw()
   {
     jerry[i].show();
   }
-  for(int i = 0; i<joe.length; i++)
+  for(int j = 0; j<joe.length; j++)
   {
-    joe.show();
+    joe[j].show();
+    joe[j].move();
   }
   bob.show();
   bob.move();
@@ -96,7 +101,7 @@ public void keyPressed(){
   if(keyCode==40)
   {
     sFlame = false;
-    bob.accelerate(-0.1);
+    bob.accelerate(-0.2);
   }
   if(keyCode==37) 
   {
@@ -156,8 +161,10 @@ class Star
 
 class Asteroid extends Floater
 {
+  int rotSpeed;
   public Asteroid(){
     corners = 5;
+    rotSpeed = ((int)(Math.random()*PI*2));
     xCorners = new int[corners];
     yCorners = new int[corners];
     xCorners[0] = 4;
@@ -171,7 +178,15 @@ class Asteroid extends Floater
     xCorners[4] = 1;
     yCorners[4] = 3;
 
-  
+  }
+  public void show()
+  {
+    super.show();
+  }
+  public void move()
+  {
+    super.move();
+    rotate(rotSpeed);
   }
   public void setX(int x) { myCenterX = x;}  
   public int getX(){return (int)myCenterX;}   
@@ -185,6 +200,7 @@ class Asteroid extends Floater
   public double getPointDirection() { return myPointDirection;}
   public void setmyColor(int c){myColor = c;}
   public int getmyColor(){return(int)myColor;}
+  
 }
 
 class Flame extends Floater

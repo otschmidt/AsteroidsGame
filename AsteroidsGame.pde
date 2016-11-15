@@ -51,6 +51,8 @@ public void draw()
 
   supa.move();
   if(qIsPressed == true){ 
+    ellipse(bob.getX(),bob.getY(),qSize,qSize);
+      /*
       qSize = 50;
     if(qSize > 0)//qFix == true
     { 
@@ -60,24 +62,30 @@ public void draw()
     }
     else{
       qSize = 0;
+      
     }
+    */
    
   }
   //Resests hyperspace
-  if(rIsPressed == true){
-    rSize = 0;
+  if(rIsPressed == true)
+  {
+    qIsPressed = false;
+    /*
     if( rSize < 50 )//&& rFix == true
     {
       fill(255,0,0);
       
       ellipse(bob.getX(),bob.getY(),rSize,rSize);
-      rSize = rSize + b;
+      //rSize = rSize + b;
     }
+    
     else{
       b = 0;
+      
      }
-     
-
+     */
+  
   }
   if(sFlame == true)
   {
@@ -115,17 +123,24 @@ public void keyPressed(){
   //HyperSpace q for Quantum leap
   if(keyCode==81)
   {
+
     qIsPressed = true;
     bob.setDirectionX(0);
     bob.setDirectionY(0);
     bob.setX((int)(Math.random()*500));
     bob.setY((int)(Math.random()*500));
     bob.setPointDirection((int)(Math.random()*360));
-    
+    supa.setDirectionX(0);
+    supa.setDirectionY(0);
+    supa.setX(bob.getX());
+    supa.setY(bob.getY());
+    supa.setPointDirection((int)bob.getPointDirection());
+    sFlame = false;
   }
   //Recharge Hyperspace?
   if(keyCode==82)
   {
+    qIsPressed = false;
     rIsPressed = true;
   } 
 }

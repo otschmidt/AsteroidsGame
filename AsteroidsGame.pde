@@ -9,7 +9,7 @@ boolean sFlame = false;
 
 public void setup() 
 {
-  size(500,500);
+  size(700,500);
   for ( int i = 0; i<jerry.length; i++)
   {
     jerry[i] = new Star();
@@ -17,12 +17,12 @@ public void setup()
    for(int j = 0; j<joe.length; j++)
   {
     joe[j] = new Asteroid();
-    joe[j].setX((int)(Math.random()*500));
+    joe[j].setX((int)(Math.random()*700));
     joe[j].setY((int)(Math.random()*500));
   }
-  bob.setX(250);
+  bob.setX(350);
   bob.setY(250);
-  supa.setX(250);
+  supa.setX(350);
   supa.setY(250);
 }
 public void draw() 
@@ -47,13 +47,8 @@ public void draw()
   supa.move();
   if(qIsPressed == true){ 
     fill((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
-    ellipse(bob.getX(),bob.getY(),50,50);
-      
-   
+    ellipse(bob.getX(),bob.getY(),50,50);  
   }
-  
-
-  
   if(sFlame == true)
   {
     fill(255,0,0);
@@ -113,7 +108,7 @@ class Star
   private int myX, myY;
   public Star()
   {
-    myX = (int)(Math.random()*500);
+    myX = (int)(Math.random()*700);
     myY = (int)(Math.random()*500);
   }
   public void show()
@@ -128,7 +123,7 @@ class Asteroid extends Floater
 {
   int rotSpeed;
   public Asteroid(){
-    corners = 5;
+    corners = 6;
     rotSpeed = ((int)(Math.random()*PI*2));
     xCorners = new int[corners];
     yCorners = new int[corners];
@@ -136,12 +131,14 @@ class Asteroid extends Floater
     yCorners[0] = 4;
     xCorners[1] = 4;
     yCorners[1] = -4;
-    xCorners[2] = -4;
-    yCorners[2] = -4;
+    xCorners[2] = 6;
+    yCorners[2] = -7;
     xCorners[3] = -4;
-    yCorners[3] = 4;
-    xCorners[4] = 1;
-    yCorners[4] = 3;
+    yCorners[3] = -4;
+    xCorners[4] = -4;
+    yCorners[4] = 5;
+    xCorners[5] = 5;
+    yCorners[5] = 7;
     myColor =((int)(Math.random()*100));
 
   }

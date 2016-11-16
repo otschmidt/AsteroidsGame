@@ -5,12 +5,6 @@ Star[] jerry = new Star[200];
 Asteroid[] joe = new Asteroid[20];
 boolean qIsPressed = false;
 boolean rIsPressed = false;
-//boolean qFix = false;
-//boolean rFix = false;
-int rSize = 0;
-int qSize = 50;
-int a = 1;
-int b = 1;
 boolean sFlame = false;
 
 public void setup() 
@@ -23,12 +17,13 @@ public void setup()
    for(int j = 0; j<joe.length; j++)
   {
     joe[j] = new Asteroid();
+    joe[j].setX((int)(Math.random()*500));
+    joe[j].setY((int)(Math.random()*500));
   }
   bob.setX(250);
   bob.setY(250);
   supa.setX(250);
   supa.setY(250);
-  //supa.setmyColor(255);
 }
 public void draw() 
 {
@@ -40,6 +35,7 @@ public void draw()
   }
   for(int j = 0; j<joe.length; j++)
   {
+
     joe[j].show();
     joe[j].move();
   }
@@ -48,52 +44,20 @@ public void draw()
   supa.setDirectionX(bob.getDirectionX());
   supa.setDirectionY(bob.getDirectionY());
   supa.setPointDirection((int)bob.getPointDirection());
-
   supa.move();
   if(qIsPressed == true){ 
-    ellipse(bob.getX(),bob.getY(),qSize,qSize);
-      /*
-      qSize = 50;
-    if(qSize > 0)//qFix == true
-    { 
-      fill(0,255,0);
-      ellipse(bob.getX(),bob.getY(),qSize,qSize);
-      qSize = qSize - a;
-    }
-    else{
-      qSize = 0;
+    fill((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
+    ellipse(bob.getX(),bob.getY(),50,50);
       
-    }
-    */
    
   }
-  //Resests hyperspace
-  if(rIsPressed == true)
-  {
-    qIsPressed = false;
-    /*
-    if( rSize < 50 )//&& rFix == true
-    {
-      fill(255,0,0);
-      
-      ellipse(bob.getX(),bob.getY(),rSize,rSize);
-      //rSize = rSize + b;
-    }
-    
-    else{
-      b = 0;
-      
-     }
-     */
   
-  }
+
+  
   if(sFlame == true)
   {
-    //rotate((float)bob.getPointDirection());
     fill(255,0,0);
     supa.show();
-    //ellipse(bob.getX()-15,bob.getY(),20,5);
-
   }
   
 
@@ -123,7 +87,7 @@ public void keyPressed(){
   //HyperSpace q for Quantum leap
   if(keyCode==81)
   {
-
+    if(qIsPressed == false){
     qIsPressed = true;
     bob.setDirectionX(0);
     bob.setDirectionY(0);
@@ -137,26 +101,12 @@ public void keyPressed(){
     supa.setPointDirection((int)bob.getPointDirection());
     sFlame = false;
   }
+  }
   //Recharge Hyperspace?
   if(keyCode==82)
   {
     qIsPressed = false;
-    rIsPressed = true;
   } 
-}
-public void keyReleased()
-{
-  if(key==38){
-    sFlame = false;
-  }
-  if(key==81)
-  {
-    qIsPressed = false;
-  }
-  if (key == 82)
-  {
-    rIsPressed = false;
-  }
 }
 class Star
 {
@@ -192,6 +142,7 @@ class Asteroid extends Floater
     yCorners[3] = 4;
     xCorners[4] = 1;
     yCorners[4] = 3;
+    myColor =((int)(Math.random()*100));
 
   }
   public void show()

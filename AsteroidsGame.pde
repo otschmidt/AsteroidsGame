@@ -2,10 +2,11 @@
 Spaceship bob = new Spaceship();
 Flame supa = new Flame();
 Star[] jerry = new Star[200];
-Asteroid[] joe = new Asteroid[20];
+//Asteroid[] joe = new Asteroid[20];
 boolean qIsPressed = false;
 boolean rIsPressed = false;
 boolean sFlame = false;
+ArrayList <Asteroid> joe = new ArrayList <Asteroid>();
 
 public void setup() 
 {
@@ -14,12 +15,21 @@ public void setup()
   {
     jerry[i] = new Star();
   }
+  /*
    for(int j = 0; j<joe.length; j++)
   {
     joe[j] = new Asteroid();
     joe[j].setX((int)(Math.random()*700));
     joe[j].setY((int)(Math.random()*500));
   }
+  */
+  for(int i=0; i<40; i++){
+    joe.add((i), new Asteroids());
+    joe.get(i).setX((int)(Math.random()700*));
+    joe.get(i).setY((int)(Math.random()500*));
+    
+  }
+
   bob.setX(350);
   bob.setY(250);
   supa.setX(350);
@@ -33,11 +43,11 @@ public void draw()
   {
     jerry[i].show();
   }
-  for(int j = 0; j<joe.length; j++)
+  for(int j = 0; j<joe.size; j++)
   {
 
-    joe[j].show();
-    joe[j].move();
+    joe.get(i).show();
+    joe.get(j).move();
   }
   bob.show();
   bob.move();

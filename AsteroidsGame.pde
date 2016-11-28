@@ -6,6 +6,7 @@ Star[] jerry = new Star[200];
 boolean qIsPressed = false;
 boolean rIsPressed = false;
 boolean sFlame = false;
+
 ArrayList <Asteroid> joe = new ArrayList <Asteroid>();
 
 public void setup() 
@@ -24,9 +25,9 @@ public void setup()
   }
   */
   for(int i=0; i<40; i++){
-    joe.add((i), new Asteroids());
-    joe.get(i).setX((int)(Math.random()700*));
-    joe.get(i).setY((int)(Math.random()500*));
+    joe.add((i), new Asteroid());
+    joe.get(i).setX((int)(Math.random()*700));
+    joe.get(i).setY((int)(Math.random()*500));
     
   }
 
@@ -43,12 +44,14 @@ public void draw()
   {
     jerry[i].show();
   }
-  for(int j = 0; j<joe.size; j++)
+  
+  for(int i = 0; i<joe.size(); i++)
   {
 
     joe.get(i).show();
-    joe.get(j).move();
+    joe.get(i).move();
   }
+
   bob.show();
   bob.move();
   supa.setDirectionX(bob.getDirectionX());
@@ -132,6 +135,7 @@ class Star
 class Asteroid extends Floater
 {
   int rotSpeed;
+
   public Asteroid(){
     corners = 6;
     rotSpeed = ((int)(Math.random()*PI*2));
@@ -161,6 +165,7 @@ class Asteroid extends Floater
     super.move();
     rotate(rotSpeed);
   }
+  
   public void setX(int x) { myCenterX = x;}  
   public int getX(){return (int)myCenterX;}   
   public void setY(int y) { myCenterY = y; }   

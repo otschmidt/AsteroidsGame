@@ -47,7 +47,10 @@ public void draw()
   
   for(int i = 0; i<joe.size(); i++)
   {
-
+    if(dist(bob.getX(), bob.getY(), joe.getX(i), joe.getY(i)))
+    {
+      joe.remove(i);
+    }
     joe.get(i).show();
     joe.get(i).move();
   }
@@ -164,6 +167,9 @@ class Asteroid extends Floater
   {
     super.move();
     rotate(rotSpeed);
+    //var dist = Math.sqrt( Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2) );
+
+
   }
   
   public void setX(int x) { myCenterX = x;}  

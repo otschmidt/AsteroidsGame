@@ -2,11 +2,10 @@
 Spaceship bob = new Spaceship();
 Flame supa = new Flame();
 Star[] jerry = new Star[200];
-//Asteroid[] joe = new Asteroid[20];
 boolean qIsPressed = false;
 boolean rIsPressed = false;
 boolean sFlame = false;
-
+int d;
 ArrayList <Asteroid> joe = new ArrayList <Asteroid>();
 
 public void setup() 
@@ -16,15 +15,7 @@ public void setup()
   {
     jerry[i] = new Star();
   }
-  /*
-   for(int j = 0; j<joe.length; j++)
-  {
-    joe[j] = new Asteroid();
-    joe[j].setX((int)(Math.random()*700));
-    joe[j].setY((int)(Math.random()*500));
-  }
-  */
-  for(int i=0; i<40; i++){
+    for(int i=0; i<40; i++){
     joe.add((i), new Asteroid());
     joe.get(i).setX((int)(Math.random()*700));
     joe.get(i).setY((int)(Math.random()*500));
@@ -38,6 +29,7 @@ public void setup()
 }
 public void draw() 
 {
+
   //your code here
   background(150);
   for(int i = 0; i<jerry.length;i++)
@@ -47,7 +39,8 @@ public void draw()
   
   for(int i = 0; i<joe.size(); i++)
   {
-    if(dist(bob.getX(), bob.getY(), joe.getX(i), joe.getY(i)))
+    d = (int)Math.sqrt((bob.getX()-joe.get(i).getX())*(bob.getX()-joe.get(i).getX())+(bob.getY()-joe.get(i).getX())*(bob.getY()-joe.get(i).getY()));
+    if( d < 20)
     {
       joe.remove(i);
     }
@@ -70,8 +63,6 @@ public void draw()
     fill(255,0,0);
     supa.show();
   }
-  
-
 }
 
 public void keyPressed(){
@@ -167,7 +158,6 @@ class Asteroid extends Floater
   {
     super.move();
     rotate(rotSpeed);
-    //var dist = Math.sqrt( Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2) );
 
 
   }

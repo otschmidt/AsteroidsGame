@@ -15,7 +15,7 @@ public void setup()
   {
     jerry[i] = new Star();
   }
-    for(int i=0; i<40; i++){
+  for(int i=0; i<40; i++){
     joe.add((i), new Asteroid());
     joe.get(i).setX((int)(Math.random()*700));
     joe.get(i).setY((int)(Math.random()*500));
@@ -40,7 +40,7 @@ public void draw()
   for(int i = 0; i<joe.size(); i++)
   {
     d = (int)Math.sqrt((bob.getX()-joe.get(i).getX())*(bob.getX()-joe.get(i).getX())+(bob.getY()-joe.get(i).getX())*(bob.getY()-joe.get(i).getY()));
-    if( d < 20)
+    if( d < 10)
     {
       joe.remove(i);
     }

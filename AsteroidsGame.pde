@@ -7,7 +7,8 @@ boolean rIsPressed = false;
 boolean sFlame = false;
 int d;
 ArrayList <Asteroid> joe = new ArrayList <Asteroid>();
-
+ArrayList <Bullet> bang = new ArrayList <Bullet>();
+boolean shoot = false;
 public void setup() 
 {
   size(700,500);
@@ -15,11 +16,16 @@ public void setup()
   {
     jerry[i] = new Star();
   }
-  for(int i=0; i<40; i++){
+  for(int i=0; i<80; i++){
     joe.add((i), new Asteroid());
     joe.get(i).setX((int)(Math.random()*700));
     joe.get(i).setY((int)(Math.random()*500));
     
+  }
+  for(int i=0; i<80; i++){
+    bang.add((i), new Bullet());
+    bang.get(i).setX(bob.getX());
+    bang.get(i).setY(bob.getY());
   }
 
   bob.setX(350);
@@ -40,12 +46,24 @@ public void draw()
   for(int i = 0; i<joe.size(); i++)
   {
     d = (int)Math.sqrt((bob.getX()-joe.get(i).getX())*(bob.getX()-joe.get(i).getX())+(bob.getY()-joe.get(i).getX())*(bob.getY()-joe.get(i).getY()));
-    if( d < 10)
+    if( d < 8)
     {
       joe.remove(i);
+      break;
     }
     joe.get(i).show();
     joe.get(i).move();
+  }
+  for(int i=0; i<bang.size(); i++)
+  {
+    if(shoot==true)
+    {
+      bang.get(i).show();
+      bang.get(i).move();
+      bang.setDirectionX(bob.getDirectionX());
+      bang.setDirectionY(bob.getDirectionY());
+      bang.setPointDirection((int)bob.getPointDirection());
+    }
   }
 
   bob.show();
@@ -109,6 +127,10 @@ public void keyPressed(){
   {
     qIsPressed = false;
   } 
+  if(keyCode==32)
+    {
+      shoot=true;
+    }
 }
 class Star
 {

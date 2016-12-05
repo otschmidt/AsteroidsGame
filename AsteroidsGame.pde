@@ -22,7 +22,7 @@ public void setup()
     joe.get(i).setY((int)(Math.random()*500));
     
   }
-  for(int i=0; i<80; i++){
+  for(int i=0; i<1; i++){
     bang.add((i), new Bullet());
     bang.get(i).setX(bob.getX());
     bang.get(i).setY(bob.getY());
@@ -58,14 +58,11 @@ public void draw()
   {
     if(shoot==true)
     {
+      bang.setPointDirection((int)bob.getPointDirection());
       bang.get(i).show();
       bang.get(i).move();
-      bang.setDirectionX(bob.getDirectionX());
-      bang.setDirectionY(bob.getDirectionY());
-      bang.setPointDirection((int)bob.getPointDirection());
     }
   }
-
   bob.show();
   bob.move();
   supa.setDirectionX(bob.getDirectionX());

@@ -1,27 +1,22 @@
 class Bullet extends Floater
 {
-  
   public Bullet(){
-    corners = 4;
-    xCorners = new int[corners];
-    yCorners = new int[corners];
-    xCorners[0] = 4;
-    yCorners[0] = 4;
-    xCorners[1] = 4;
-    yCorners[1] = -4;
-    xCorners[2] = -4;
-    yCorners[2] = -4;
-    xCorners[3] = -4;
-    yCorners[3] = 4;
-    myColor =((int)(Math.random()*20));
+    myCenterX = bob.getX();
+    myCenterY = bob.getY();
+    double dRadians =myPointDirection*(Math.PI/180);
+    myDirectionX = (int)(5 * Math.cos(dRadians) + bob.getDirectionY());
+    myDirectionY = (int)(5 * Math.sin(dRadians) + bob.getDirectionY());
+
+
   }
-    public void show()
+  public void show()
   {
-    super.show();
+    fill(250,250,0);
+    ellipse((float)myCenterX,(float)myCenterY,5,5);
   }
-  public void move()
-  {
-    myCenterX++; 
+  public void move(){
+    myCenterX+= myDirectionX();
+    myCenterY+= myDirectionY();     
   }
   public void setX(int x) { myCenterX = x;}  
   public int getX(){return (int)myCenterX;}   

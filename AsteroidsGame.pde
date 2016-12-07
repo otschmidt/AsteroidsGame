@@ -5,10 +5,10 @@ Star[] jerry = new Star[200];
 boolean qIsPressed = false;
 boolean rIsPressed = false;
 boolean sFlame = false;
-int d;
 ArrayList <Asteroid> joe = new ArrayList <Asteroid>();
 ArrayList <Bullet> bang = new ArrayList <Bullet>();
 boolean shoot = false;
+
 public void setup() 
 {
   size(700,500);
@@ -22,10 +22,11 @@ public void setup()
     joe.get(i).setY((int)(Math.random()*500));
     
   }
-  for(int i=0; i<bang.size; i++){
-    bang.add((i), new Bullet());
-    bang.get(i).setX(bob.getX());
-    bang.get(i).setY(bob.getY());
+  for(int k=0; k<1; k++){
+    bang.add((k), new Bullet());
+
+    //bang.get(k).setX(bob.getX());
+    //bang.get(k).setY(bob.getY());
   }
   bob.setX(350);
   bob.setY(250);
@@ -41,25 +42,32 @@ public void draw()
   {
     jerry[i].show();
   }
-  
   for(int i = 0; i<joe.size(); i++)
   {
-    d = (int)Math.sqrt((bob.getX()-joe.get(i).getX())*(bob.getX()-joe.get(i).getX())+(bob.getY()-joe.get(i).getX())*(bob.getY()-joe.get(i).getY()));
-    if( d < 8)
-    {
-      joe.remove(i);
-      break;
-    }
     joe.get(i).show();
     joe.get(i).move();
   }
- 
+  for(int i = 0; i<joe.size(); i++)
+  {
+      for(int k =0; k<bang.size(); k++)
+      {
+        if(dist(bang.get(k).getX(),bang.get(k).getY(),joe.get(i).getX(),joe.get(i).getY())<8)
+        {
+          joe.remove(i);
+          break;
+        }
+      }
+   
+   
+  }
+  for(int k=0; k<bang.size();k++)
+  {
     if(shoot==true)
     {
-      bang.add((i), new Bullet());
-      bang.get(i).show();
-      bang.get(i).move();
-    
+      //bang.add((i), new Bullet());
+      bang.get(k).show();
+      bang.get(k).move();
+    }
   }
   bob.show();
   bob.move();
@@ -125,6 +133,8 @@ public void keyPressed(){
   if(keyCode==32)
     {
       shoot=true;
+      bang.add((1), new Bullet());
+
     }
 }
 class Star

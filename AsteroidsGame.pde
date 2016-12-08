@@ -100,12 +100,12 @@ public void keyPressed(){
   }
   if(keyCode==37) 
   {
-    bob.rotate(-15);
+    bob.rotate(-10);
   }
 
   if(keyCode==39) 
   {
-    bob.rotate(15);
+    bob.rotate(10);
   }
   //HyperSpace q for Quantum leap
   if(keyCode==81)
@@ -160,6 +160,8 @@ class Asteroid extends Floater
   public Asteroid(){
     corners = 6;
     rotSpeed = ((int)(Math.random()*PI*2));
+    myDirectionX=(Math.random()*2-5);
+    myDirectionY=(Math.random()*2-5);
     xCorners = new int[corners];
     yCorners = new int[corners];
     xCorners[0] = 4;
